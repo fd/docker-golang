@@ -29,6 +29,7 @@ deploy:
       code: |
         chmod a+x ./bin/*
         cp ./bin/* /usr/local/bin/
+        rm -rf /pipeline /report
   - internal/docker-push:
       username: $DKR_USERNAME
       password: $DKR_PASSWORD
