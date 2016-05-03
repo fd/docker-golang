@@ -21,6 +21,9 @@ build:
         # install k8s
         # ...
 
+        # install bin/*
+        cp bin/* ${WERCKER_OUTPUT_DIR}/bin/
+
 
 deploy:
   steps:
