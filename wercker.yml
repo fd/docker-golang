@@ -3,10 +3,10 @@ box: golang:1.6
 build:
   steps:
   - script:
-      name: "Get unzip"
+      name: "Install unzip and jq"
       code: |
         apt-get update -y
-        apt-get install -y unzip
+        apt-get install -y unzip jq
   - script:
       name: "Fetch bins"
       code: |
