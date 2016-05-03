@@ -3,5 +3,5 @@ set -e
 
 if [[ "x$GCP_KEY" != "x" ]]; then
   mkdir -p "$HOME/.config/gcloud"
-  echo "$GCP_KEY" > "$HOME/.config/gcloud/application_default_credentials.json"
+  echo -e "$GCP_KEY" > "$HOME/.config/gcloud/application_default_credentials.json"
 fi
