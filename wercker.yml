@@ -26,7 +26,7 @@ deploy:
   steps:
   - script:
       name: "Install bins"
-      script: |
+      code: |
         chmod a+x ./bin/*
         cp ./bin/* /usr/local/bin/
   - internal/docker-push:
