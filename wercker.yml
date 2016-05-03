@@ -1,0 +1,25 @@
+box: golang:1.6
+
+build:
+  steps:
+  - script:
+      name: "Fetch bins"
+      script: |
+        mkdir -p ${WERCKER_OUTPUT_DIR}/bin
+        scripts/ghr-fetch tcnksm/ghr > ghr.zip && unzip -p ghr.zip ghr > ${WERCKER_OUTPUT_DIR}/bin/ghr
+        scripts/ghr-fetch fd/dkr-util | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
+        chmod a+x ${WERCKER_OUTPUT_DIR}/bin/*
+
+
+deploy:
+  steps:
+  - script:
+      name: "Install bins"
+      script: |
+        cp ./bin/* /usr/local/bin/
+  - internal/docker-push:
+      username: $DKR_USERNAME
+      password: $DKR_PASSWORD
+      tag: latest
+      repository: simonmenke/go-build
+      registry: https://registry.hub.docker.com

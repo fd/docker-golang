@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+
+Q=".[0].assets"
+Q="$Q | map(select(.name | contains(\"linux\")))"
+Q="$Q | map(select(.name | contains(\"amd64\")))"
+Q="$Q | .[0].browser_download_url"
+
+URL=$(curl -s "https://api.github.com/repos/$1/releases" | jq -r "$Q")
+echo "Downloading $URL" 1>&2
+curl -# -L "$URL"
