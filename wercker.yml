@@ -13,13 +13,20 @@ build:
         mkdir -p ${WERCKER_OUTPUT_DIR}/bin
 
         # install ghr
-        scripts/ghr-fetch tcnksm/ghr > ghr.zip && unzip -p ghr.zip ghr > ${WERCKER_OUTPUT_DIR}/bin/ghr
+        scripts/ghr-fetch tcnksm/ghr > ghr.zip
+        unzip -p ghr.zip ghr > ${WERCKER_OUTPUT_DIR}/bin/ghr
 
         # install dkr
         scripts/ghr-fetch fd/dkr-util | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
 
         # install k8s
-        # ...
+        scripts/ghr-fetch fd/k8s-utils | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
+
+        # install kubctl
+        # kubernetes/platforms/linux/amd64/kubectl
+        scripts/ghr-fetch -sP kubernetes/kubernetes | tar \
+          -C ${WERCKER_OUTPUT_DIR}/bin --strip-components=4 -xzf - \
+          kubernetes/platforms/linux/amd64/kubectl
 
         # install bin/*
         cp bin/* ${WERCKER_OUTPUT_DIR}/bin/

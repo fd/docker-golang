@@ -1,9 +1,26 @@
 #!/usr/bin/env bash
 set -e
 
-Q=".[0].assets"
-Q="$Q | map(select(.name | contains(\"linux\")))"
-Q="$Q | map(select(.name | contains(\"amd64\")))"
+platform_filter="1"
+stable="0"
+
+while getopts "sP" opt; do
+  case "$opt" in
+  P) platform_filter="0" ;;
+  s) stable="1"          ;;
+  esac
+  shift $((OPTIND-1))
+done
+
+Q="."
+if [[ $stable == "1" ]]; then
+  Q="$Q | map(select(.prerelease != true))"
+fi
+Q="$Q | .[0].assets"
+if [[ $platform_filter == "1" ]]; then
+  Q="$Q | map(select(.name | contains(\"linux\")))"
+  Q="$Q | map(select(.name | contains(\"amd64\")))"
+fi
 Q="$Q | .[0].browser_download_url"
 
 URL=$(curl -s "https://api.github.com/repos/$1/releases" | jq -r "$Q")
