@@ -19,6 +19,9 @@ build:
         # install dkr
         scripts/ghr-fetch fd/dkr-util | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
 
+        # install sec
+        scripts/ghr-fetch fd/sec-utils | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
+
         # install v5n
         scripts/ghr-fetch limbo-services/version | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
 
