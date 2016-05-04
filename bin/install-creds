@@ -5,3 +5,15 @@ if [[ "x$GCP_KEY" != "x" ]]; then
   mkdir -p "$HOME/.config/gcloud"
   echo -e "$GCP_KEY" > "$HOME/.config/gcloud/application_default_credentials.json"
 fi
+
+if [[ -f "$HOME/.config/gcloud/profile" ]]; then
+  cat $HOME/.config/gcloud/profile
+fi
+
+if [[ -f "$HOME/.config/github/profile" ]]; then
+  cat $HOME/.config/github/profile
+fi
+
+if [[ -f "$HOME/.config/wercker/profile" ]]; then
+  cat $HOME/.config/wercker/profile
+fi
