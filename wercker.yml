@@ -28,6 +28,9 @@ build:
         # install k8s
         scripts/ghr-fetch fd/k8s-utils | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
 
+        # install x-tar
+        scripts/ghr-fetch fd/tar-utils | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
+
         # install kubctl
         # kubernetes/platforms/linux/amd64/kubectl
         scripts/ghr-fetch -sP kubernetes/kubernetes | tar \
