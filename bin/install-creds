@@ -17,3 +17,7 @@ fi
 if [[ -f "$HOME/.config/wercker/profile" ]]; then
   cat $HOME/.config/wercker/profile
 fi
+
+if [[ -f "$HOME/.config/heroku/profile" ]]; then
+  cat $HOME/.config/heroku/profile
+fi
