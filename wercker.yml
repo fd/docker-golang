@@ -16,6 +16,9 @@ build:
         scripts/ghr-fetch tcnksm/ghr > ghr.zip
         unzip -p ghr.zip ghr > ${WERCKER_OUTPUT_DIR}/bin/ghr
 
+        # install govendor
+        scripts/ghr-fetch kardianos/govendor > ${WERCKER_OUTPUT_DIR}/bin/govendor
+
         # install dkr
         scripts/ghr-fetch fd/dkr-util | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
 
@@ -30,6 +33,9 @@ build:
 
         # install x-tar
         scripts/ghr-fetch fd/tar-utils | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
+
+        # install x-heroku
+        scripts/ghr-fetch fd/heroku-utils | tar -C ${WERCKER_OUTPUT_DIR}/bin -xz
 
         # install kubctl
         # kubernetes/platforms/linux/amd64/kubectl
