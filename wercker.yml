@@ -53,6 +53,7 @@ deploy:
       name: "Install bins"
       code: |
         chmod a+x ./bin/*
+        ls -l ./bin
         cp ./bin/* /usr/local/bin/
         rm -rf /pipeline /report
   - internal/docker-push:
