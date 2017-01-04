@@ -39,9 +39,9 @@ build:
 
         # install kubctl
         # kubernetes/platforms/linux/amd64/kubectl
-        scripts/ghr-fetch -sP kubernetes/kubernetes | tar \
-          -C ${WERCKER_OUTPUT_DIR}/bin --strip-components=4 -xzf - \
-          kubernetes/platforms/linux/amd64/kubectl
+        KUBE_VERSION=$(curl -fL https://dl.k8s.io/release/stable.txt)
+        curl -L "https://dl.k8s.io/release/${KUBE_VERSION}/bin/linux/amd64/kubectl" > ${WERCKER_OUTPUT_DIR}/bin
+        chmod a+x ${WERCKER_OUTPUT_DIR}/bin/*
 
         # install bin/*
         cp bin/* ${WERCKER_OUTPUT_DIR}/bin/
